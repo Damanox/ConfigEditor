@@ -1,0 +1,58 @@
+// D import file generated from 'org\eclipse\swt\internal\ole\win32\COMAPI.d'
+module org.eclipse.swt.internal.ole.win32.COMAPI;
+import org.eclipse.swt.internal.win32.WINTYPES;
+import org.eclipse.swt.internal.ole.win32.COMTYPES;
+import org.eclipse.swt.internal.ole.win32.OBJIDL;
+import org.eclipse.swt.internal.ole.win32.OLEIDL;
+import org.eclipse.swt.internal.ole.win32.OAIDL;
+import org.eclipse.swt.internal.ole.win32.extras;
+extern (Windows) 
+{
+	WINOLEAPI CreateStreamOnHGlobal(HGLOBAL hGlobal, BOOL fDeleteOnRelease, LPSTREAM* ppstm);
+	HRESULT CLSIDFromProgID(LPCOLESTR lpszProgID, LPCLSID pclsid);
+	HRESULT CLSIDFromString(LPCOLESTR lpsz, LPCLSID pclsid);
+	STDAPI CoCreateInstance(REFCLSID rclsid, LPUNKNOWN pUnkOuter, DWORD dwClsContext, REFCIID riid, LPVOID* ppv);
+	void CoFreeUnusedLibraries();
+	STDAPI CoGetClassObject(REFCLSID rclsid, DWORD dwClsContext, COSERVERINFO* pServerInfo, REFCIID riid, LPVOID* ppv);
+	STDAPI CoLockObjectExternal(LPUNKNOWN pUnk, BOOL fLock, BOOL fLastUnlockReleases);
+	LPVOID CoTaskMemAlloc(ULONG cb);
+	void CoTaskMemFree(void* pv);
+	WINOLEAPI DoDragDrop(LPDATAOBJECT pDataObject, LPDROPSOURCE pDropSource, DWORD dwOKEffect, DWORD* pdwEffect);
+	WINOLEAPI GetClassFile(LPCWSTR szFileName, CLSID* pclsid);
+	WINOLEAPI IIDFromString(LPCOLESTR lpsz, LPIID lpiid);
+	BOOL IsEqualGUID(REFCGUID rguid1, REFCGUID rguid2);
+	WINOLEAPI OleCreate(REFCLSID rclsid, REFCIID riid, DWORD renderopt, FORMATETC* pFormatEtc, IOleClientSite* pClientSite, LPSTORAGE pStg, void** ppvObject);
+	WINOLEAPI OleCreateFromFile(REFCLSID rclsid, LPCOLESTR lpszFileName, REFCIID riid, DWORD renderopt, LPFORMATETC pFormatEtc, LPOLECLIENTSITE pClientSite, LPSTORAGE pStg, LPVOID* ppvObj);
+	STDAPI OleCreatePropertyFrame(HWND hwndOwner, UINT x, UINT y, LPCOLESTR lpszCaption, ULONG cObjects, LPUNKNOWN* lplpUnk, ULONG cPages, LPCLSID lpPageClsID, LCID lcid, DWORD dwReserved, LPVOID lpvReserved);
+	WINOLEAPI OleDraw(LPUNKNOWN pUnk, DWORD dwAspect, HDC hdcDraw, LPCRECT lprcBounds);
+	WINOLEAPI OleFlushClipboard();
+	WINOLEAPI OleGetClipboard(LPDATAOBJECT* ppDataObj);
+	WINOLEAPI OleIsCurrentClipboard(LPDATAOBJECT pDataObject);
+	BOOL OleIsRunning(LPOLEOBJECT pObject);
+	WINOLEAPI OleLoad(LPSTORAGE pStg, REFIID riid, IOleClientSite* pClientSite, LPVOID* ppvObj);
+	WINOLEAPI OleRun(LPUNKNOWN pUnknown);
+	WINOLEAPI OleSave(LPPERSISTSTORAGE pPS, LPSTORAGE pStg, BOOL fSameAsLoad);
+	WINOLEAPI OleSetClipboard(LPDATAOBJECT pDataObj);
+	WINOLEAPI OleSetContainedObject(LPUNKNOWN pUnk, BOOL fContained);
+	WINOLEAPI OleSetMenuDescriptor(HOLEMENU holemenu, HWND hwndFrame, HWND hwndActiveObject, LPOLEINPLACEFRAME lpFrame, LPOLEINPLACEACTIVEOBJECT lpActiveObj);
+	STDAPI OleTranslateColor(OLE_COLOR clr, HPALETTE hpal, COLORREF* pcolorref);
+	WINOLEAPI ProgIDFromCLSID(REFCLSID clsid, LPOLESTR* lplpszProgID);
+	WINOLEAPI RegisterDragDrop(HWND hwnd, LPDROPTARGET pDropTarget);
+	void ReleaseStgMedium(STGMEDIUM* pmedium);
+	WINOLEAPI RevokeDragDrop(HWND hwnd);
+	HRESULT SHDoDragDrop(HWND hwnd, IDataObject* pdtobj, IDropSource* pdsrc, DWORD dwEffect, DWORD* pdwEffect);
+	HRESULT StgCreateDocfile(LPCWSTR pwcsName, DWORD grfMode, DWORD reserved, LPSTORAGE* ppstgOpen);
+	WINOLEAPI StgIsStorageFile(LPCWSTR pwcsName);
+	HRESULT StgOpenStorage(LPCWSTR pwcsName, LPSTORAGE pstgPriority, DWORD grfMode, SNB snbExclude, DWORD reserved, LPSTORAGE* ppstgOpen);
+	WINOLEAPI StringFromCLSID(REFCLSID rclsid, LPOLESTR* ppsz);
+	BSTR SysAllocString(LPCOLESTR sz);
+	VOID SysFreeString(BSTR bstr);
+	UINT SysStringByteLen(BSTR bstr);
+	HRESULT VariantChangeType(VARIANTARG* pvargDest, VARIANTARG* pvarSrc, ushort wFlags, VARTYPE vt);
+	HRESULT VariantClear(VARIANTARG* pvarg);
+	HRESULT VariantCopy(VARIANTARG* pvargDest, VARIANTARG* pvargSrc);
+	VOID VariantInit(VARIANTARG* pvarg);
+	WINOLEAPI WriteClassStg(LPSTORAGE pStg, REFCLSID rclsid);
+	STDAPI CreateStdAccessibleObject(HWND hwnd, LONG idObject, REFCIID riidInterface, void** ppvObject);
+	LRESULT LresultFromObject(REFCIID riid, WPARAM wParam, LPUNKNOWN pAcc);
+}

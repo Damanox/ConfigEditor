@@ -1,0 +1,14 @@
+{
+	"name": "configeditor",
+	"description": "Config editor for sElEdit",
+	"copyright": "Copyright © 2014, Beast",
+	"authors": ["Beast"],
+	"targetPath": "bin",
+	"targetType": "executable",
+	"importPaths": ["dwt/imp"],
+	"stringImportPaths": ["dwt/res"],
+	"sourceFiles-windows-x86-dmd": ["lib/dwt-base.lib","lib/org.eclipse.swt.win32.win32.x86.lib","dwt/res/resource.res"],
+	"lflags-windows-dmd": ["+.\\lib\\","/subsystem:windows:5"],
+	"dependencies": {
+	}
+}
