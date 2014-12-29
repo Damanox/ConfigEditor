@@ -10,6 +10,7 @@ import std.system;
 import std.algorithm;
 import std.file;
 import std.path;
+import std.typecons;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Image;
@@ -256,7 +257,7 @@ void main()
                     auto index = configCombo.getSelectionIndex();
                     if(index <= config.npcTalk)
                         config.npcTalk++;
-                    auto list = ConfigList(config.lists.length, text.getText(), "0");
+                    auto list = new ConfigList(config.lists.length, text.getText(), "0");
                     config.lists.insertInPlace(index + 1, list);
                     configCombo.add(list.name, index + 1);
                     configCombo.select(index + 1);
@@ -376,7 +377,6 @@ void main()
             if(list.names.length > row)
                 list.names.insertInPlace(row + 1, "");
             list.types.insertInPlace(row + 1, Type());
-            config.lists[configCombo.getSelectionIndex] = list;
             auto item = new TableItem(configTable, SWT.NONE, row + 1);
             item.setText(["", "", "0"]);
         }
@@ -393,7 +393,6 @@ void main()
             if(list.names.length > row)
                 list.names = list.names.remove(row);
             list.types = list.types.remove(row);
-            config.lists[configCombo.getSelectionIndex] = list;
             configTable.remove(row);
         }
     });
@@ -420,15 +419,9 @@ void main()
             }
         }
     });
-    configTable.addMouseListener(new class MouseListener
+    configTable.addMouseListener(new class BlackHole!MouseListener
     {
-        public void mouseUp(MouseEvent e)
-        {}
-
-        public void mouseDown(MouseEvent e)
-        {}
-
-        public void mouseDoubleClick(MouseEvent e)
+        public override void mouseDoubleClick(MouseEvent e)
         {
             auto oldEditor = editor.getEditor();
             if(oldEditor !is null)
@@ -464,7 +457,6 @@ void main()
                         if(list.names.length <= index)
                             list.names.length = index + 1;
                         list.names[index] = text.getText();
-                        config.lists[configCombo.getSelectionIndex] = list;
                     }
                 });
                 text.addFocusListener(new class FocusListener
@@ -549,15 +541,9 @@ void main()
             editor.setEditor(control, item, column);
         }
     });
-    elementList.addMouseListener(new class MouseListener
+    elementList.addMouseListener(new class BlackHole!MouseListener
     {
-        public void mouseUp(MouseEvent e)
-        {}
-        
-        public void mouseDown(MouseEvent e)
-        {}
-        
-        public void mouseDoubleClick(MouseEvent e)
+        public override void mouseDoubleClick(MouseEvent e)
         {
             if(e.button != 1)
                 return;
@@ -617,7 +603,7 @@ private void loadCfg(string path, ref Config config)
         while(range.front.text.strip.empty)
             range.popFront();
         auto listStr = range.take(4).map!(to!string).array;
-        ConfigList list;
+        auto list = new ConfigList();
         list.index = i;
         list.name = listStr[0].strip;
         list.skip = listStr[1].strip;

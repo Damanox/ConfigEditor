@@ -10,13 +10,23 @@ struct Config
     public ConfigList[] lists;
 }
 
-struct ConfigList
+class ConfigList
 {
     public int index;
     public string name;
     public string skip;
     public string[] names;
     public Type[] types;
+
+    this()
+    {}
+
+    this(int index, string name, string skip)
+    {
+        this.index = index;
+        this.name = name;
+        this.skip = skip;
+    }
 
     public int getSize()
     {
